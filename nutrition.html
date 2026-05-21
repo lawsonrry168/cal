@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>營養百科 — VitaPure 純萃</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><span class="logo-icon">🌿</span>VitaPure 純萃</a>
+      <nav class="nav-desktop">
+        <a href="index.html" data-nav>首頁</a>
+        <a href="products.html" data-nav>產品目錄</a>
+        <a href="guide.html" data-nav>健康測驗</a>
+        <a href="nutrition.html" data-nav>營養百科</a>
+        <a href="blog.html" data-nav>保健專欄</a>
+        <a href="about.html" data-nav>關於我們</a>
+      </nav>
+      <div class="header-actions">
+        <a href="cart.html" class="btn-icon" aria-label="購物車">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          <span class="cart-badge" id="cart-count" style="display:none">0</span>
+        </a>
+        <button class="btn-icon menu-toggle" id="menu-toggle" aria-label="選單">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+      <nav class="nav-mobile" id="nav-mobile">
+        <a href="index.html" data-nav>首頁</a>
+        <a href="nutrition.html" data-nav>營養百科</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <div class="container">
+      <p class="breadcrumb"><a href="index.html">首頁</a> / 營養百科</p>
+      <h1>營養成分百科</h1>
+      <p>了解常見營養素的功效、食物來源與建議攝取量，做出更聰明的保健選擇</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="search-bar">
+        <input type="search" id="nutrient-search" placeholder="搜尋營養素名稱…">
+      </div>
+      <div style="overflow-x:auto">
+        <table class="nutrient-table" id="nutrient-table">
+          <thead>
+            <tr>
+              <th>營養素</th>
+              <th>主要功效</th>
+              <th>食物來源</th>
+              <th>建議攝取量</th>
+            </tr>
+          </thead>
+          <tbody id="nutrient-body"></tbody>
+        </table>
+      </div>
+      <div class="grid-3 mt-2">
+        <div class="card feature-card">
+          <div class="feature-icon">💊</div>
+          <h3>維生素礦物質</h3>
+          <p><a href="products.html?cat=vitamins">查看相關產品 →</a></p>
+        </div>
+        <div class="card feature-card">
+          <div class="feature-icon">🐟</div>
+          <h3>魚油與脂肪酸</h3>
+          <p><a href="products.html?cat=omega">查看相關產品 →</a></p>
+        </div>
+        <div class="card feature-card">
+          <div class="feature-icon">🦠</div>
+          <h3>益生菌</h3>
+          <p><a href="products.html?cat=probiotics">查看相關產品 →</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">© 2026 VitaPure 純萃</div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    const tbody = document.getElementById("nutrient-body");
+
+    function render(list) {
+      tbody.innerHTML = list.map(n => `
+        <tr>
+          <td><strong>${n.name}</strong></td>
+          <td>${n.role}</td>
+          <td>${n.source}</td>
+          <td>${n.daily}</td>
+        </tr>
+      `).join("");
+    }
+
+    render(VITA_DATA.nutrients);
+
+    document.getElementById("nutrient-search").addEventListener("input", e => {
+      const q = e.target.value.toLowerCase();
+      render(VITA_DATA.nutrients.filter(n =>
+        n.name.toLowerCase().includes(q) || n.role.toLowerCase().includes(q)
+      ));
+    });
+  </script>
+</body>
+</html>

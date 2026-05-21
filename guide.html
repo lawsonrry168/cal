@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>健康測驗 — VitaPure 純萃</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><span class="logo-icon">🌿</span>VitaPure 純萃</a>
+      <nav class="nav-desktop">
+        <a href="index.html" data-nav>首頁</a>
+        <a href="products.html" data-nav>產品目錄</a>
+        <a href="guide.html" data-nav>健康測驗</a>
+        <a href="nutrition.html" data-nav>營養百科</a>
+        <a href="blog.html" data-nav>保健專欄</a>
+        <a href="about.html" data-nav>關於我們</a>
+      </nav>
+      <div class="header-actions">
+        <a href="cart.html" class="btn-icon" aria-label="購物車">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          <span class="cart-badge" id="cart-count" style="display:none">0</span>
+        </a>
+        <button class="btn-icon menu-toggle" id="menu-toggle" aria-label="選單">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+      <nav class="nav-mobile" id="nav-mobile">
+        <a href="index.html" data-nav>首頁</a>
+        <a href="products.html" data-nav>產品目錄</a>
+        <a href="guide.html" data-nav>健康測驗</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <div class="container">
+      <p class="breadcrumb"><a href="index.html">首頁</a> / 健康測驗</p>
+      <h1>個人化健康測驗</h1>
+      <p>回答 5 個簡單問題，我們將依據您的生活型態推薦最適合的補健品組合</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="quiz-container" id="quiz-app">
+        <div class="quiz-progress"><div class="quiz-progress-bar" id="quiz-bar" style="width:20%"></div></div>
+        <div id="quiz-content"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">© 2026 VitaPure 純萃 · 測驗結果僅供參考，不能取代專業醫療建議</div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    const questions = VITA_DATA.quizQuestions;
+    let step = 0;
+    const scores = { energy: 0, heart: 0, beauty: 0, gut: 0, bone: 0 };
+
+    const content = document.getElementById("quiz-content");
+    const bar = document.getElementById("quiz-bar");
+
+    function renderQuestion() {
+      const q = questions[step];
+      bar.style.width = `${((step + 1) / questions.length) * 100}%`;
+      content.innerHTML = `
+        <p style="font-size:0.8rem;color:var(--text-muted);margin:0 0 0.5rem">問題 ${step + 1} / ${questions.length}</p>
+        <h2 style="margin:0 0 1.25rem;font-size:1.2rem;color:var(--green-900)">${q.question}</h2>
+        ${q.options.map((opt, i) => `
+          <button class="quiz-option" data-idx="${i}">${opt.text}</button>
+        `).join("")}
+      `;
+      content.querySelectorAll(".quiz-option").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const opt = q.options[Number(btn.dataset.idx)];
+          Object.entries(opt.scores || {}).forEach(([k, v]) => { scores[k] = (scores[k] || 0) + v; });
+          step++;
+          if (step < questions.length) renderQuestion();
+          else renderResult();
+        });
+      });
+    }
+
+    function renderResult() {
+      bar.style.width = "100%";
+      const topKey = Object.entries(scores).sort((a, b) => b[1] - a[1])[0]?.[0] || "energy";
+      const result = VITA_DATA.quizResults[topKey];
+      const products = result.products.map(id => VitaApp.getProduct(id)).filter(Boolean);
+
+      content.innerHTML = `
+        <div class="quiz-result">
+          <div class="quiz-result-icon">🎯</div>
+          <h2 style="color:var(--green-900);margin:0 0 0.5rem">${result.title}</h2>
+          <p style="color:var(--text-muted);margin-bottom:1.5rem">${result.desc}</p>
+          <div class="grid-2" style="text-align:left;margin-bottom:1.5rem">
+            ${products.map(p => `
+              <div class="card" style="display:flex;gap:1rem;align-items:center;padding:1rem">
+                <span style="font-size:2rem">${p.emoji}</span>
+                <div>
+                  <strong style="font-size:0.9rem">${p.name}</strong>
+                  <p style="margin:0.25rem 0 0;font-size:0.85rem;color:var(--green-700)">${VitaApp.formatPrice(p.price)}</p>
+                </div>
+              </div>
+            `).join("")}
+          </div>
+          <button class="btn btn-primary" id="add-all-btn">一次加入推薦組合</button>
+          <button class="btn btn-outline" style="margin-left:0.5rem" onclick="location.reload()">重新測驗</button>
+        </div>
+      `;
+
+      document.getElementById("add-all-btn").addEventListener("click", () => {
+        products.forEach(p => VitaApp.addToCart(p.id));
+        VitaApp.showToast("已將推薦組合加入購物車！");
+      });
+    }
+
+    renderQuestion();
+  </script>
+</body>
+</html>

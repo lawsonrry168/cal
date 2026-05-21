@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>常見問題 — VitaPure 純萃</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><span class="logo-icon">🌿</span>VitaPure 純萃</a>
+      <nav class="nav-desktop">
+        <a href="index.html" data-nav>首頁</a>
+        <a href="products.html" data-nav>產品目錄</a>
+        <a href="faq.html" data-nav>常見問題</a>
+        <a href="contact.html" data-nav>聯絡我們</a>
+      </nav>
+      <div class="header-actions">
+        <a href="cart.html" class="btn-icon" aria-label="購物車">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          <span class="cart-badge" id="cart-count" style="display:none">0</span>
+        </a>
+        <button class="btn-icon menu-toggle" id="menu-toggle" aria-label="選單">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <div class="container">
+      <p class="breadcrumb"><a href="index.html">首頁</a> / 常見問題</p>
+      <h1>常見問題</h1>
+      <p>關於產品、食用、訂購與保存的常見疑問解答</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container" style="max-width:720px">
+      <div id="faq-list"></div>
+      <p class="text-center mt-2" style="color:var(--text-muted)">
+        還有其他問題？<a href="contact.html">聯絡我們</a> 或致電 0800-123-456
+      </p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">© 2026 VitaPure 純萃</div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.getElementById("faq-list").innerHTML = VITA_DATA.faqs.map(f => `
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          ${f.q}
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-answer">${f.a}</div>
+      </div>
+    `).join("");
+    VitaApp.initFAQ();
+  </script>
+</body>
+</html>

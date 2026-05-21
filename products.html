@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>產品目錄 — VitaPure 純萃</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><span class="logo-icon">🌿</span>VitaPure 純萃</a>
+      <nav class="nav-desktop">
+        <a href="index.html" data-nav>首頁</a>
+        <a href="products.html" data-nav>產品目錄</a>
+        <a href="guide.html" data-nav>健康測驗</a>
+        <a href="nutrition.html" data-nav>營養百科</a>
+        <a href="blog.html" data-nav>保健專欄</a>
+        <a href="about.html" data-nav>關於我們</a>
+      </nav>
+      <div class="header-actions">
+        <a href="cart.html" class="btn-icon" aria-label="購物車">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          <span class="cart-badge" id="cart-count" style="display:none">0</span>
+        </a>
+        <button class="btn-icon menu-toggle" id="menu-toggle" aria-label="選單">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+      <nav class="nav-mobile" id="nav-mobile">
+        <a href="index.html" data-nav>首頁</a>
+        <a href="products.html" data-nav>產品目錄</a>
+        <a href="guide.html" data-nav>健康測驗</a>
+        <a href="nutrition.html" data-nav>營養百科</a>
+        <a href="blog.html" data-nav>保健專欄</a>
+        <a href="about.html" data-nav>關於我們</a>
+        <a href="faq.html" data-nav>常見問題</a>
+        <a href="contact.html" data-nav>聯絡我們</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <div class="container">
+      <p class="breadcrumb"><a href="index.html">首頁</a> / 產品目錄</p>
+      <h1>產品目錄</h1>
+      <p>8 款精選補健品，依類別篩選或搜尋，找到最適合您的保健方案</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="search-bar">
+        <input type="search" id="search-input" placeholder="搜尋產品名稱或成分…" aria-label="搜尋產品">
+        <button class="btn btn-primary" id="search-btn">搜尋</button>
+      </div>
+      <div class="pills" id="category-pills"></div>
+      <p id="result-count" style="font-size:0.875rem;color:var(--text-muted);margin-bottom:1rem"></p>
+      <div class="grid-4" id="product-grid"></div>
+      <div class="empty-state" id="no-results" style="display:none">
+        <div class="empty-state-icon">🔍</div>
+        <p>找不到符合條件的產品，請嘗試其他關鍵字或分類</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><div class="logo" style="color:white;margin-bottom:1rem"><span class="logo-icon">🌿</span>VitaPure 純萃</div></div>
+        <div><h4>產品與服務</h4><a href="products.html">產品目錄</a><a href="guide.html">健康測驗</a></div>
+        <div><h4>關於</h4><a href="about.html">品牌故事</a><a href="faq.html">常見問題</a></div>
+        <div><h4>客服</h4><p style="font-size:0.875rem;margin:0">0800-123-456</p></div>
+      </div>
+      <div class="footer-bottom">© 2026 VitaPure 純萃</div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    let activeCategory = "all";
+    let searchQuery = "";
+
+    const params = new URLSearchParams(location.search);
+    if (params.get("cat")) activeCategory = params.get("cat");
+
+    const pillsEl = document.getElementById("category-pills");
+    pillsEl.innerHTML = VITA_DATA.categories.map(cat => `
+      <button class="pill ${cat.id === activeCategory ? "active" : ""}" data-cat="${cat.id}">${cat.name}</button>
+    `).join("");
+
+    function filterProducts() {
+      return VITA_DATA.products.filter(p => {
+        const matchCat = activeCategory === "all" || p.category === activeCategory;
+        const q = searchQuery.toLowerCase();
+        const matchSearch = !q || p.name.toLowerCase().includes(q) ||
+          p.desc.toLowerCase().includes(q) || p.ingredients.toLowerCase().includes(q);
+        return matchCat && matchSearch;
+      });
+    }
+
+    function render() {
+      const list = filterProducts();
+      const grid = document.getElementById("product-grid");
+      const noResults = document.getElementById("no-results");
+      document.getElementById("result-count").textContent = `共 ${list.length} 項產品`;
+
+      if (list.length === 0) {
+        grid.innerHTML = "";
+        noResults.style.display = "block";
+      } else {
+        noResults.style.display = "none";
+        grid.innerHTML = list.map(p => VitaApp.renderProductCard(p)).join("");
+        VitaApp.bindAddToCart(grid);
+      }
+    }
+
+    pillsEl.addEventListener("click", e => {
+      if (!e.target.classList.contains("pill")) return;
+      activeCategory = e.target.dataset.cat;
+      pillsEl.querySelectorAll(".pill").forEach(p => p.classList.toggle("active", p.dataset.cat === activeCategory));
+      render();
+    });
+
+    document.getElementById("search-btn").addEventListener("click", () => {
+      searchQuery = document.getElementById("search-input").value.trim();
+      render();
+    });
+    document.getElementById("search-input").addEventListener("keydown", e => {
+      if (e.key === "Enter") { searchQuery = e.target.value.trim(); render(); }
+    });
+
+    render();
+  </script>
+</body>
+</html>
