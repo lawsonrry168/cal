@@ -3,13 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AeroMortgage 專業房貸與購屋規劃套件</title>
+  <title>VinaInvest Pro 越南房地產投資入口網 & 專業房貸套件</title>
   <!-- Tailwind CSS 引入 -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Vue 3 引入 -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <style>
     [v-cloak] { display: none; }
+    html {
+      scroll-behavior: smooth;
+    }
     /* 自訂拉桿樣式，使其更具現代感 */
     input[type="range"]::-webkit-slider-thumb {
       -webkit-appearance: none;
@@ -32,34 +35,35 @@
   <div id="app" v-cloak class="min-h-screen flex flex-col">
     
     <!-- 頁首導覽列 -->
-    <header class="border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-50 px-4 py-3 sm:px-6">
-      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+    <header class="border-b border-slate-800 bg-slate-950/90 backdrop-blur sticky top-0 z-50 px-4 py-3 sm:px-6">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+        <!-- 品牌 LOGO -->
         <div class="flex items-center gap-3">
           <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center shadow-lg shadow-emerald-500/10">
-            <svg class="w-5 h-5 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            <svg class="w-6 h-6 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
             </svg>
           </div>
           <div>
-            <h1 class="text-xl font-bold bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">
-              AeroMortgage Suite
+            <h1 class="text-xl font-bold bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent leading-tight">
+              VinaInvest Pro
             </h1>
-            <p class="text-xs text-slate-400">專業級房地產與購屋財務規劃工具</p>
+            <p class="text-[10px] text-slate-400 tracking-wider uppercase font-semibold">Vietnam Luxury Real Estate & Finance</p>
           </div>
         </div>
 
-        <!-- 快速預設值 -->
-        <div class="flex flex-wrap items-center gap-2">
-          <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider mr-1">推薦預設案:</span>
-          <button
-            v-for="(preset, idx) in presets"
-            :key="idx"
-            @click="applyPreset(preset)"
-            class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700/50 hover:border-emerald-500/30 transition text-slate-300"
-          >
-            {{ preset.name }}
-          </button>
-        </div>
+        <!-- 導覽選單 -->
+        <nav class="flex items-center gap-6 text-sm font-medium">
+          <a href="#market-trends" class="text-slate-300 hover:text-emerald-400 transition">越南優勢</a>
+          <a href="#properties" class="text-slate-300 hover:text-emerald-400 transition">精選建案</a>
+          <a href="#mortgage-suite" class="text-slate-300 hover:text-emerald-400 transition flex items-center gap-1.5">
+            <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            專業房貸套件
+          </a>
+          <a href="#consultation" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 px-4 py-2 rounded-xl text-xs font-bold transition shadow-lg shadow-emerald-500/15">
+            預約顧問
+          </a>
+        </nav>
       </div>
     </header>
 
@@ -75,8 +79,164 @@
       </div>
     </div>
 
-    <!-- 主要內容區 -->
-    <main class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:py-8 flex-1 w-full">
+    <!-- HERO 越南投資大勢橫幅 -->
+    <section class="relative bg-slate-950 py-20 px-4 overflow-hidden border-b border-slate-800">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.08),transparent_50%)]"></div>
+      <div class="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <span class="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-xs font-bold text-emerald-400">
+            ✨ 2026 亞太黃金投資市場：越南 Vietnam
+          </span>
+          <h2 class="text-4xl sm:text-5xl font-black text-slate-100 leading-tight">
+            開拓東協新高地<br />
+            <span class="bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">佈局越南頂級地產</span>
+          </h2>
+          <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+            越南正經歷快速都市化與強勁經濟增長。我們為您精選河內、胡志明市核心黃金地段的不動產專案，搭配最科學的越南盾（VND）在地化財務評估工具，讓您的海外資產配置無往不利。
+          </p>
+          <div class="flex flex-wrap gap-4 pt-2">
+            <a href="#properties" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 px-6 py-3 rounded-xl text-sm font-bold transition shadow-lg shadow-emerald-500/15">
+              瀏覽投資專案
+            </a>
+            <a href="#mortgage-suite" class="border border-slate-700 bg-slate-900/60 hover:bg-slate-800 text-slate-200 px-6 py-3 rounded-xl text-sm font-bold transition">
+              直達房貸試算
+            </a>
+          </div>
+        </div>
+
+        <!-- 越南市場亮點數據 -->
+        <div class="grid grid-cols-2 gap-4">
+          <div v-for="stat in marketStats" :key="stat.label" class="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-5 hover:border-slate-700 transition">
+            <span class="text-xs text-slate-500 font-bold block uppercase tracking-wide">{{ stat.label }}</span>
+            <span class="text-2xl sm:text-3xl font-black text-emerald-400 block mt-2 font-mono">{{ stat.value }}</span>
+            <p class="text-xs text-slate-400 mt-1 leading-normal">{{ stat.desc }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 越南投資優勢剖析 -->
+    <section id="market-trends" class="py-16 px-4 max-w-7xl mx-auto w-full">
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-12">
+        <h3 class="text-emerald-400 text-xs font-bold uppercase tracking-wider">Market Insights</h3>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-100">為何此時選擇越南房地產？</h2>
+        <p class="text-slate-400 text-xs sm:text-sm">法規逐步放寬、人口红利持續釋放、中產階級迅速崛起，成就東協最強置產引擎。</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div v-for="benefit in investmentBenefits" :key="benefit.title" class="bg-slate-950/20 border border-slate-800 rounded-2xl p-6 space-y-4">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" v-html="benefit.icon"></svg>
+          </div>
+          <h4 class="text-md font-bold text-slate-100">{{ benefit.title }}</h4>
+          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">{{ benefit.desc }}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 精選建案與一鍵試算房貸 -->
+    <section id="properties" class="py-16 px-4 bg-slate-950/40 border-t border-slate-800 w-full">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+          <div>
+            <h3 class="text-emerald-400 text-xs font-bold uppercase tracking-wider">Premium Selection</h3>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-100 mt-1">越南優質不動產投資專案</h2>
+            <p class="text-slate-400 text-xs sm:text-sm mt-1">精選河內與胡志明市蛋黃區建案，點選「試算房貸」即可自動在下方帶入即時估算。</p>
+          </div>
+          
+          <!-- 城市篩選 -->
+          <div class="flex gap-2">
+            <button 
+              @click="filterCity = 'all'" 
+              :class="['px-4 py-1.5 rounded-xl text-xs font-bold transition', filterCity === 'all' ? 'bg-emerald-500 text-slate-950' : 'bg-slate-800 text-slate-400 hover:bg-slate-700']"
+            >
+              全部城市
+            </button>
+            <button 
+              @click="filterCity = 'HCMC'" 
+              :class="['px-4 py-1.5 rounded-xl text-xs font-bold transition', filterCity === 'HCMC' ? 'bg-emerald-500 text-slate-950' : 'bg-slate-800 text-slate-400 hover:bg-slate-700']"
+            >
+              胡志明市 (HCMC)
+            </button>
+            <button 
+              @click="filterCity = 'Hanoi'" 
+              :class="['px-4 py-1.5 rounded-xl text-xs font-bold transition', filterCity === 'Hanoi' ? 'bg-emerald-500 text-slate-950' : 'bg-slate-800 text-slate-400 hover:bg-slate-700']"
+            >
+              河內 (Hanoi)
+            </button>
+          </div>
+        </div>
+
+        <!-- 物件卡片網格 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div v-for="property in filteredProperties" :key="property.id" class="bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-2xl overflow-hidden flex flex-col justify-between transition group">
+            
+            <!-- 物件示意圖佔位 (無 base64，採用精緻 SVG 生成插圖) -->
+            <div class="relative h-44 bg-slate-800 flex items-center justify-center overflow-hidden">
+              <svg class="w-full h-full text-slate-700" viewBox="0 0 200 120" preserveAspectRatio="none">
+                <rect width="200" height="120" fill="#1e293b"/>
+                <polygon points="20,100 80,40 140,100" fill="#0f172a" opacity="0.5"/>
+                <polygon points="100,100 150,50 200,100" fill="#0f172a" opacity="0.3"/>
+                <line x1="0" y1="100" x2="200" y2="100" stroke="#334155" stroke-width="2"/>
+                <path d="M 120 40 L 135 40 L 135 60 L 120 60 Z" fill="#10b981" opacity="0.15"/>
+              </svg>
+              <span class="absolute top-3 left-3 bg-slate-950/80 backdrop-blur text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded-md border border-emerald-500/20">
+                {{ property.cityLabel }}
+              </span>
+              <span class="absolute top-3 right-3 bg-slate-950/80 backdrop-blur text-slate-300 text-[10px] px-2 py-0.5 rounded-md">
+                投報率：{{ property.expectedROI }}%
+              </span>
+            </div>
+
+            <!-- 物件內文資訊 -->
+            <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+              <div class="space-y-1.5">
+                <h4 class="text-sm font-bold text-slate-100 group-hover:text-emerald-400 transition leading-snug">
+                  {{ property.name }}
+                </h4>
+                <p class="text-xs text-slate-500 leading-normal">{{ property.location }}</p>
+                <div class="flex items-center gap-3 text-[11px] text-slate-400">
+                  <span class="flex items-center gap-1">🛏️ {{ property.beds }} 房</span>
+                  <span>•</span>
+                  <span>📐 {{ property.area }} m²</span>
+                </div>
+              </div>
+
+              <div class="pt-3 border-t border-slate-800 flex items-center justify-between">
+                <div>
+                  <span class="text-[10px] text-slate-500 block">建議投資總價</span>
+                  <span class="text-md font-black text-emerald-400 font-mono">{{ formatCurrency(property.price) }}</span>
+                </div>
+                <!-- 試算連動按鈕 -->
+                <a 
+                  href="#mortgage-suite" 
+                  @click="applyPropertyToCalculator(property)"
+                  class="bg-emerald-500/10 hover:bg-emerald-500 text-emerald-400 hover:text-slate-950 border border-emerald-500/20 hover:border-transparent p-2 rounded-xl transition text-xs font-bold flex items-center gap-1"
+                >
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                  </svg>
+                  試算房貸
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 房貸計算機與購屋規劃大區塊 -->
+    <section id="mortgage-suite" class="py-16 px-4 max-w-7xl mx-auto w-full">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-10">
+        <h3 class="text-emerald-400 text-xs font-bold uppercase tracking-wider">AeroMortgage Tool</h3>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-100">越南盾在地化房貸與購屋規劃套件</h2>
+        <p class="text-slate-400 text-xs sm:text-sm">
+          專為越南盾（₫/VND）高量級金額、在地利率及低持有稅特徵打造的專業財務規劃工具。
+        </p>
+      </div>
+
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
         <!-- 左側面板：輸入控制區 -->
@@ -86,19 +246,19 @@
               <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
               </svg>
-              貸款核心參數設定
+              貸款核定參數
             </h2>
             <span class="text-xs bg-slate-800 text-slate-400 font-mono px-2 py-0.5 rounded">
               LTV (貸比值): {{ calculations.ltvRatio.toFixed(1) }}%
             </span>
           </div>
 
-          <!-- 房屋總價與拉桿 -->
+          <!-- 房屋總價與拉桿 (以越南盾量級調整) -->
           <div class="space-y-2">
             <div class="flex justify-between items-center">
-              <label class="text-sm text-slate-400 font-medium">房屋預估總價</label>
+              <label class="text-sm text-slate-400 font-medium">房屋評估總值 (₫)</label>
               <div class="relative">
-                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 font-medium text-sm">$</span>
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 font-medium text-sm">₫</span>
                 <input
                   type="number"
                   v-model.number="homeValue"
@@ -109,19 +269,19 @@
             </div>
             <input
               type="range"
-              min="100000"
-              max="10000000"
-              step="50000"
+              min="300000000"
+              max="25000000000"
+              step="100000000"
               v-model.number="homeValue"
               @input="handleHomeValueChange"
               class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"
             />
             <div class="flex justify-between text-[10px] text-slate-500 font-semibold">
-              <span>$10萬</span>
-              <span>$200萬</span>
-              <span>$500萬</span>
-              <span>$800萬</span>
-              <span>$1,000萬</span>
+              <span>3億 ₫</span>
+              <span>50億 ₫</span>
+              <span>100億 ₫</span>
+              <span>180億 ₫</span>
+              <span>250億 ₫</span>
             </div>
           </div>
 
@@ -141,13 +301,13 @@
                     @click="downPaymentType = 'dollar'"
                     :class="['px-2 py-0.5 rounded transition', downPaymentType === 'dollar' ? 'bg-emerald-500 text-slate-950 font-bold' : 'text-slate-400']"
                   >
-                    $
+                    ₫
                   </button>
                 </div>
               </div>
 
               <div class="relative">
-                <span v-if="downPaymentType === 'dollar'" class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 font-medium text-sm">$</span>
+                <span v-if="downPaymentType === 'dollar'" class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 font-medium text-sm">₫</span>
                 <input
                   type="number"
                   v-model.number="currentDownPaymentVal"
@@ -167,24 +327,24 @@
               class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"
             />
             <div class="flex justify-between text-[10px] text-slate-500 font-semibold">
-              <span>0% (無自備)</span>
-              <span>10%</span>
-              <span>20% (免信用保險)</span>
-              <span>40%</span>
+              <span>0%</span>
+              <span>20%</span>
+              <span>30% (越南標準)</span>
+              <span>50%</span>
               <span>80%</span>
             </div>
           </div>
 
-          <!-- 年利率 -->
+          <!-- 年利率 (反映越南普遍較高利率，一般在 6.5% - 11% 區間) -->
           <div class="space-y-2">
             <div class="flex justify-between items-center">
               <label class="text-sm text-slate-400 font-medium">貸款年利率 (Annual Rate)</label>
               <div class="relative">
                 <input
                   type="number"
-                  step="0.1"
+                  step="0.05"
                   min="0"
-                  max="15"
+                  max="20"
                   v-model.number="interestRate"
                   class="w-24 bg-slate-900 border border-slate-700 rounded-lg py-1.5 px-3 text-right text-emerald-400 font-bold focus:outline-none focus:border-emerald-500"
                 />
@@ -193,33 +353,32 @@
             </div>
             <input
               type="range"
-              min="1"
-              max="12"
+              min="3"
+              max="15"
               step="0.05"
               v-model.number="interestRate"
               class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"
             />
             <div class="flex justify-between text-[10px] text-slate-500 font-semibold">
-              <span>1%</span>
-              <span>4%</span>
-              <span>6%</span>
-              <span>8%</span>
-              <span>10%</span>
-              <span>12%</span>
+              <span>3%</span>
+              <span>6% (外資銀)</span>
+              <span>8.5% (基準)</span>
+              <span>11% (浮動)</span>
+              <span>15%</span>
             </div>
           </div>
 
           <!-- 貸款年限 -->
           <div class="space-y-2">
             <label class="text-sm text-slate-400 font-medium block">貸款年限 (期間)</label>
-            <div class="grid grid-cols-4 gap-2">
+            <div class="grid grid-cols-5 gap-1">
               <button
-                v-for="t in [10, 15, 20, 30]"
+                v-for="t in [10, 15, 20, 25, 30]"
                 :key="t"
                 @click="loanTerm = t"
                 :class="['py-2 rounded-xl text-xs font-bold transition border', loanTerm === t ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/50 shadow-inner' : 'bg-slate-900 text-slate-400 border-slate-800 hover:bg-slate-800']"
               >
-                {{ t }} 年
+                {{ t }}年
               </button>
             </div>
           </div>
@@ -230,13 +389,13 @@
               各項稅費與雜費估算 (年度/月度)
             </h3>
 
-            <!-- Property Taxes -->
+            <!-- Property Taxes (越南土地稅率非常低) -->
             <div class="flex items-center justify-between gap-4">
-              <span class="text-xs text-slate-300">年持有稅率 (房屋地價稅等)</span>
+              <span class="text-xs text-slate-300">年持有稅率 (非農地使用稅率)</span>
               <div class="relative">
                 <input
                   type="number"
-                  step="0.05"
+                  step="0.01"
                   v-model.number="propertyTaxRate"
                   class="w-24 bg-slate-900 border border-slate-800 rounded py-1 px-2 text-right text-slate-200 text-xs focus:outline-none"
                 />
@@ -244,40 +403,40 @@
               </div>
             </div>
 
-            <!-- Home Insurance -->
+            <!-- Home Insurance (強制住宅火災與爆炸險) -->
             <div class="flex items-center justify-between gap-4">
-              <span class="text-xs text-slate-300">年度地震險/火險火災保費</span>
+              <span class="text-xs text-slate-300">年度地震與強制火災保費</span>
               <div class="relative">
-                <span class="absolute left-2 top-1/2 -translate-y-1/2 text-[10px] text-slate-500 font-bold">$</span>
+                <span class="absolute left-2 top-1/2 -translate-y-1/2 text-[10px] text-slate-500 font-bold">₫</span>
                 <input
                   type="number"
-                  step="50"
+                  step="100000"
                   v-model.number="homeInsurance"
                   class="w-24 bg-slate-900 border border-slate-800 rounded py-1 pl-5 pr-2 text-right text-slate-200 text-xs focus:outline-none"
                 />
               </div>
             </div>
 
-            <!-- HOA Dues -->
+            <!-- HOA Dues (越南管理費 Phí quản lý) -->
             <div class="flex items-center justify-between gap-4">
-              <span class="text-xs text-slate-300">每月大樓管理費/社區清潔費</span>
+              <span class="text-xs text-slate-300">每月物業管理費 (Phí quản lý)</span>
               <div class="relative">
-                <span class="absolute left-2 top-1/2 -translate-y-1/2 text-[10px] text-slate-500 font-bold">$</span>
+                <span class="absolute left-2 top-1/2 -translate-y-1/2 text-[10px] text-slate-500 font-bold">₫</span>
                 <input
                   type="number"
-                  step="10"
+                  step="50000"
                   v-model.number="hoa"
                   class="w-24 bg-slate-900 border border-slate-800 rounded py-1 pl-5 pr-2 text-right text-slate-200 text-xs focus:outline-none"
                 />
               </div>
             </div>
 
-            <!-- PMI Estimate -->
+            <!-- PMI Estimate (越南信用保證保險) -->
             <div class="flex items-center justify-between gap-4">
               <span class="text-xs text-slate-300 flex items-center gap-1.5">
-                年信用保險費 (LTV>80%需計)
+                房貸信用保險費 (LTV>80%計)
                 <span v-if="calculations.ltvRatio <= 80" class="text-[9px] bg-slate-800 text-slate-500 border border-slate-700/50 px-1 rounded">
-                  已豁免
+                  已免繳
                 </span>
               </span>
               <div class="relative">
@@ -301,7 +460,7 @@
             <div class="flex gap-2">
               <input
                 type="text"
-                placeholder="例如：30年期自住案"
+                placeholder="例如：30年期穩健自住"
                 v-model="scenarioNameInput"
                 class="flex-1 bg-slate-900 border border-slate-700/80 rounded-xl px-3 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-emerald-500"
               />
@@ -333,9 +492,9 @@
             </button>
           </div>
 
-          <!-- 四大快顯核心數據指標 -->
+          <!-- 四大快顯核心數據指標 (越南盾量級展示) -->
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div class="bg-slate-950/30 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between">
+            <div class="bg-slate-950/30 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between animate-fade-in">
               <span class="text-xs text-slate-400 font-medium">預估月付款額</span>
               <span class="text-xl sm:text-2xl font-black text-emerald-400 mt-2 font-mono">
                 {{ formatCurrency(calculations.totalMonthlyPayment) }}
@@ -343,25 +502,25 @@
               <span class="text-[10px] text-slate-500 mt-1">含本息、持有稅與管理費</span>
             </div>
             <div class="bg-slate-950/30 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between">
-              <span class="text-xs text-slate-400 font-medium">總貸款授信金額</span>
+              <span class="text-xs text-slate-400 font-medium">總貸款核准金額</span>
               <span class="text-xl sm:text-2xl font-black text-slate-200 mt-2 font-mono">
                 {{ formatCurrency(calculations.loanAmount) }}
               </span>
-              <span class="text-[10px] text-slate-500 mt-1">自備：{{ formatCurrency(homeValue - calculations.loanAmount) }}</span>
+              <span class="text-[10px] text-slate-500 mt-1">首期自備：{{ formatCurrency(homeValue - calculations.loanAmount) }}</span>
             </div>
             <div class="bg-slate-950/30 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between">
-              <span class="text-xs text-slate-400 font-medium">累計利息支出 (生息)</span>
+              <span class="text-xs text-slate-400 font-medium">累計全期利息支出</span>
               <span class="text-xl sm:text-2xl font-black text-slate-300 mt-2 font-mono">
                 {{ formatCurrency(calculations.standardTotalInterest) }}
               </span>
               <span class="text-[10px] text-slate-500 mt-1">利息/本金佔比：{{ ((calculations.standardTotalInterest / (calculations.loanAmount || 1)) * 100).toFixed(0) }}%</span>
             </div>
             <div class="bg-slate-950/30 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between">
-              <span class="text-xs text-slate-400 font-medium">本息累計總流出</span>
+              <span class="text-xs text-slate-400 font-medium">總還款資金流出</span>
               <span class="text-xl sm:text-2xl font-black text-slate-300 mt-2 font-mono">
                 {{ formatCurrency(calculations.standardTotalPaid) }}
               </span>
-              <span class="text-[10px] text-slate-500 mt-1">僅含貸款本金與利息總計</span>
+              <span class="text-[10px] text-slate-500 mt-1">貸款本金與利息總計額</span>
             </div>
           </div>
 
@@ -399,7 +558,7 @@
 
                 <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
                   <span class="text-[10px] uppercase tracking-wider text-slate-500 font-bold">總月付</span>
-                  <span class="text-2xl font-black text-slate-100 font-mono">
+                  <span class="text-xl font-black text-slate-100 font-mono">
                     {{ formatCurrency(calculations.totalMonthlyPayment) }}
                   </span>
                 </div>
@@ -578,7 +737,7 @@
                               <span>期數 (月份)</span>
                               <span class="text-right">單月還本</span>
                               <span class="text-right">單月利息</span>
-                              <span class="text-right">房貸信保(PMI)</span>
+                              <span class="text-right">房貸保險(PMI)</span>
                               <span class="text-right">單月總繳</span>
                               <span class="text-right">本金餘額</span>
                             </div>
@@ -604,7 +763,7 @@
           <!-- 頁籤三：額外還款加速器 -->
           <div v-if="activeTab === 'extra'" class="space-y-6">
             
-            <!-- 額外付款配置輸入 -->
+            <!-- 額外付款配置輸入 (大金額越南盾) -->
             <div class="bg-slate-950/20 border border-slate-800 rounded-2xl p-5 sm:p-6 space-y-5">
               <div>
                 <h3 class="text-sm font-bold text-slate-200">設定加速還款計畫 (模擬提前清償)</h3>
@@ -614,14 +773,14 @@
               <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <!-- 每月加碼 -->
                 <div class="space-y-2">
-                  <label class="text-xs text-slate-400 font-semibold">每月固定額外多繳</label>
+                  <label class="text-xs text-slate-400 font-semibold">每月固定額外多繳 (₫)</label>
                   <div class="relative">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 font-semibold text-sm">$</span>
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 font-semibold text-sm">₫</span>
                     <input
                       type="number"
-                      step="500"
+                      step="500000"
                       v-model.number="extraMonthly"
-                      placeholder="不加碼"
+                      placeholder="0"
                       class="w-full bg-slate-900 border border-slate-700 rounded-xl py-2 pl-7 pr-3 text-emerald-400 font-bold font-mono focus:outline-none focus:border-emerald-500 text-sm"
                     />
                   </div>
@@ -629,14 +788,14 @@
 
                 <!-- 每年大額還 -->
                 <div class="space-y-2">
-                  <label class="text-xs text-slate-400 font-semibold">每年固定單筆加繳 (如年終)</label>
+                  <label class="text-xs text-slate-400 font-semibold">每年固定單筆加繳 (₫)</label>
                   <div class="relative">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 font-semibold text-sm">$</span>
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 font-semibold text-sm">₫</span>
                     <input
                       type="number"
-                      step="1000"
+                      step="5000000"
                       v-model.number="extraAnnual"
-                      placeholder="不加碼"
+                      placeholder="0"
                       class="w-full bg-slate-900 border border-slate-700 rounded-xl py-2 pl-7 pr-3 text-emerald-400 font-bold font-mono focus:outline-none focus:border-emerald-500 text-sm"
                     />
                   </div>
@@ -647,12 +806,12 @@
                   <label class="text-xs text-slate-400 font-semibold">特定期數一次性大額還款</label>
                   <div class="flex gap-2">
                     <div class="relative flex-1">
-                      <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 font-semibold text-sm">$</span>
+                      <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 font-semibold text-sm">₫</span>
                       <input
                         type="number"
-                        step="5000"
+                        step="10000000"
                         v-model.number="extraOneTime"
-                        placeholder="無單筆"
+                        placeholder="0"
                         class="w-full bg-slate-900 border border-slate-700 rounded-xl py-2 pl-7 pr-3 text-emerald-400 font-bold font-mono focus:outline-none focus:border-emerald-500 text-sm"
                       />
                     </div>
@@ -662,7 +821,7 @@
                         title="施作月份"
                         v-model.number="extraOneTimeMonth"
                         class="w-full bg-slate-900 border border-slate-700 rounded-xl py-2 px-2 text-center text-slate-300 font-semibold focus:outline-none text-sm"
-                        placeholder="第幾月"
+                        placeholder="月份"
                       />
                     </div>
                   </div>
@@ -714,7 +873,7 @@
                   </div>
                   <div class="border-t border-slate-800 my-1" />
                   <div class="flex justify-between text-xs font-bold">
-                    <span class="text-slate-200">整體省下資金：</span>
+                    <span class="text-slate-200">網絡財務收益：</span>
                     <span class="font-mono text-emerald-400">{{ formatCurrency(calculations.totalInterestSaved) }}</span>
                   </div>
                 </div>
@@ -727,7 +886,7 @@
           <!-- 頁籤四：購屋預算能力評估 -->
           <div v-if="activeTab === 'affordability'" class="space-y-6">
             
-            <!-- 財務狀況指標輸入 -->
+            <!-- 財務狀況指標輸入 (越南盾) -->
             <div class="bg-slate-950/20 border border-slate-800 rounded-2xl p-5 sm:p-6 space-y-5">
               <div>
                 <h3 class="text-sm font-bold text-slate-200 font-semibold">自所得與債務評估最佳置產價</h3>
@@ -737,9 +896,9 @@
               <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <!-- 家庭年所得 -->
                 <div class="space-y-1">
-                  <label class="text-xs text-slate-400 font-medium">家庭預估總年收入 (稅前)</label>
+                  <label class="text-xs text-slate-400 font-medium">家庭年總收入 (預計/稅前) (₫)</label>
                   <div class="relative">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 font-semibold text-sm">$</span>
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 font-semibold text-sm">₫</span>
                     <input
                       type="number"
                       v-model.number="annualIncome"
@@ -750,9 +909,9 @@
 
                 <!-- 月度負債 -->
                 <div class="space-y-1">
-                  <label class="text-xs text-slate-400 font-medium">每月固定淨債務 (信貸/車貸/卡債)</label>
+                  <label class="text-xs text-slate-400 font-medium">每月其他固定淨債務支出 (₫)</label>
                   <div class="relative">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 font-semibold text-sm">$</span>
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 font-semibold text-sm">₫</span>
                     <input
                       type="number"
                       v-model.number="monthlyDebts"
@@ -763,9 +922,9 @@
 
                 <!-- 預備自備款 -->
                 <div class="space-y-1">
-                  <label class="text-xs text-slate-400 font-medium">手頭已備自備投標金</label>
+                  <label class="text-xs text-slate-400 font-medium">可挪用自備款總額 (₫)</label>
                   <div class="relative">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 font-semibold text-sm">$</span>
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 font-semibold text-sm">₫</span>
                     <input
                       type="number"
                       v-model.number="affordDownPayment"
@@ -798,6 +957,7 @@
                   >
                     <option :value="15">15 年期</option>
                     <option :value="20">20 年期</option>
+                    <option :value="25">25 年期</option>
                     <option :value="30">30 年期</option>
                   </select>
                 </div>
@@ -807,17 +967,17 @@
             <!-- 三種安全係數之置產預算建議 -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
               
-              <!-- 1. 保守置產方案 -->
+              <!-- 保守置產方案 -->
               <div class="bg-slate-950/40 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between hover:border-emerald-500/20 transition">
                 <div>
                   <span class="text-xs bg-emerald-500/10 text-emerald-400 font-bold px-2 py-0.5 rounded uppercase tracking-wider inline-block">
-                    保守方案
+                    保守方案 (安全)
                   </span>
                   <p class="text-xs text-slate-400 mt-2">將全體購屋月還款嚴格限制在家庭稅前收入的 28% 以下，財務最安全。</p>
                   
                   <div class="my-6">
                     <span class="text-xs text-slate-500 block font-semibold">建議置產總房價</span>
-                    <span class="text-3xl font-black text-slate-200 font-mono block mt-1">
+                    <span class="text-2xl font-black text-slate-200 font-mono block mt-1">
                       {{ formatCurrency(affordability.conservative.homePrice) }}
                     </span>
                   </div>
@@ -825,7 +985,7 @@
                 
                 <div class="space-y-2 border-t border-slate-800 pt-3 text-xs">
                   <div class="flex justify-between">
-                    <span class="text-slate-500">預估合理貸款：</span>
+                    <span class="text-slate-500">最高可貸額度：</span>
                     <span class="font-semibold text-slate-300 font-mono">{{ formatCurrency(affordability.conservative.loanAmount) }}</span>
                   </div>
                   <div class="flex justify-between">
@@ -835,17 +995,17 @@
                 </div>
               </div>
 
-              <!-- 2. 穩健置產方案 -->
+              <!-- 穩健置產方案 -->
               <div class="bg-slate-950/40 border border-emerald-500/30 rounded-2xl p-5 flex flex-col justify-between shadow-lg shadow-emerald-500/5 hover:border-emerald-500/40 transition">
                 <div>
                   <span class="text-xs bg-teal-500/20 text-teal-300 font-bold px-2 py-0.5 rounded uppercase tracking-wider inline-block">
                     穩健中庸 (推薦)
                   </span>
-                  <p class="text-xs text-slate-400 mt-2">房貸不超過家庭所得 33%，兼顧家庭與生活休閒品質，大部分銀行的認列標準。</p>
+                  <p class="text-xs text-slate-400 mt-2">房貸不超過家庭所得 33%，兼顧家庭與生活休閒品質，符合大多數銀行核貸標準。</p>
                   
                   <div class="my-6">
                     <span class="text-xs text-slate-500 block font-semibold">建議置產總房價</span>
-                    <span class="text-3xl font-black text-emerald-400 font-mono block mt-1">
+                    <span class="text-2xl font-black text-emerald-400 font-mono block mt-1">
                       {{ formatCurrency(affordability.moderate.homePrice) }}
                     </span>
                   </div>
@@ -853,7 +1013,7 @@
                 
                 <div class="space-y-2 border-t border-slate-800 pt-3 text-xs">
                   <div class="flex justify-between">
-                    <span class="text-slate-500">預估合理貸款：</span>
+                    <span class="text-slate-500">最高可貸額度：</span>
                     <span class="font-semibold text-slate-300 font-mono">{{ formatCurrency(affordability.moderate.loanAmount) }}</span>
                   </div>
                   <div class="flex justify-between">
@@ -863,17 +1023,17 @@
                 </div>
               </div>
 
-              <!-- 3. 積極置產方案 -->
+              <!-- 積極置產方案 -->
               <div class="bg-slate-950/40 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between hover:border-emerald-500/20 transition">
                 <div>
                   <span class="text-xs bg-red-500/10 text-red-400 font-bold px-2 py-0.5 rounded uppercase tracking-wider inline-block">
                     積極擴張方案
                   </span>
-                  <p class="text-xs text-slate-400 mt-2">房貸佔所得 40%。可能會排擠到其他生活開銷，若有其他被動收入或穩定所得再考量。</p>
+                  <p class="text-xs text-slate-400 mt-2">房貸佔所得 40%。可能會擠壓到其他非必要開支，適合有預期增值回報的高收入階層。</p>
                   
                   <div class="my-6">
                     <span class="text-xs text-slate-500 block font-semibold">建議置產總房價</span>
-                    <span class="text-3xl font-black text-slate-200 font-mono block mt-1">
+                    <span class="text-2xl font-black text-slate-200 font-mono block mt-1">
                       {{ formatCurrency(affordability.aggressive.homePrice) }}
                     </span>
                   </div>
@@ -881,7 +1041,7 @@
                 
                 <div class="space-y-2 border-t border-slate-800 pt-3 text-xs">
                   <div class="flex justify-between">
-                    <span class="text-slate-500">預估合理貸款：</span>
+                    <span class="text-slate-500">最高可貸額度：</span>
                     <span class="font-semibold text-slate-300 font-mono">{{ formatCurrency(affordability.aggressive.loanAmount) }}</span>
                   </div>
                   <div class="flex justify-between">
@@ -955,7 +1115,7 @@
                         <span class="font-semibold text-slate-200 font-mono">{{ formatCurrency(scenario.loanAmount) }}</span>
                       </div>
                       <div class="flex justify-between">
-                        <span class="text-slate-400">月繳付款款:</span>
+                        <span class="text-slate-400">月付款項:</span>
                         <span class="font-bold text-emerald-400 font-mono">{{ formatCurrency(scenario.monthlyPayment) }}</span>
                       </div>
                       <div class="flex justify-between">
@@ -986,14 +1146,84 @@
         </section>
 
       </div>
-    </main>
+    </section>
+
+    <!-- 投資顧問預約諮詢表單 -->
+    <section id="consultation" class="py-16 px-4 bg-slate-950/60 border-t border-slate-800 w-full">
+      <div class="max-w-4xl mx-auto bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(16,185,129,0.05),transparent_50%)]"></div>
+        
+        <div class="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          <div class="md:col-span-5 space-y-4">
+            <h3 class="text-emerald-400 text-xs font-bold uppercase tracking-wider">Expert Advisory</h3>
+            <h2 class="text-2xl font-extrabold text-slate-100 leading-snug">
+              取得專屬的<br />越南置產諮詢報告
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+              我們的跨國法律、稅務與地產專家團隊將在 24 小時內與您聯繫，協助您進行外國人產權限制（LURC / 紅皮書）及資金往來的合規評估。
+            </p>
+          </div>
+
+          <div class="md:col-span-7">
+            <form @submit.prevent="submitConsultation" class="space-y-4">
+              <div class="grid grid-cols-2 gap-4">
+                <div class="space-y-1">
+                  <label class="text-[11px] text-slate-400 font-semibold uppercase">姓名 / Name</label>
+                  <input type="text" required v-model="consultForm.name" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-emerald-500 text-slate-200" placeholder="王先生/女士">
+                </div>
+                <div class="space-y-1">
+                  <label class="text-[11px] text-slate-400 font-semibold uppercase">聯絡電話 / Phone</label>
+                  <input type="tel" required v-model="consultForm.phone" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-emerald-500 text-slate-200" placeholder="+886...">
+                </div>
+              </div>
+              <div class="space-y-1">
+                <label class="text-[11px] text-slate-400 font-semibold uppercase">電子信箱 / Email</label>
+                <input type="email" required v-model="consultForm.email" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-emerald-500 text-slate-200" placeholder="investor@example.com">
+              </div>
+              <div class="space-y-1">
+                <label class="text-[11px] text-slate-400 font-semibold uppercase">感興趣的目標區域</label>
+                <select v-model="consultForm.target" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-emerald-500 text-slate-400">
+                  <option value="HCMC-District1">胡志明市 (第1區 / 守添新區)</option>
+                  <option value="HCMC-District7">胡志明市 (第7區 / 富美興)</option>
+                  <option value="Hanoi-Westlake">河內 (西湖區 / 核心精華區)</option>
+                  <option value="Hanoi-NamTuLiem">河內 (南慈廉區 / 新CBD區)</option>
+                </select>
+              </div>
+              <button type="submit" class="w-full py-2.5 bg-emerald-500 hover:bg-emerald-600 text-slate-950 rounded-xl text-xs font-black transition shadow-lg shadow-emerald-500/15 uppercase tracking-wider">
+                送出預約並獲取免費指南
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- 頁尾 -->
-    <footer class="border-t border-slate-800 mt-16 bg-slate-950/40 py-8 px-4">
-      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-        <p>© 2026 AeroMortgage Suite. 本工具資料僅供財務模擬規劃參考，核貸結果仍依承貸銀行為準。</p>
+    <footer class="border-t border-slate-800 bg-slate-950 py-12 px-4">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-xs text-slate-400">
+        <div class="space-y-3">
+          <span class="text-sm font-extrabold text-slate-200">VinaInvest Pro</span>
+          <p class="leading-relaxed text-slate-500">領先的越南地產跨國投資入口網，專注於透明、合規、高效的境外不動產佈局規劃。</p>
+        </div>
+        <div class="space-y-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-200">胡志明總部</span>
+          <p class="leading-normal text-slate-500">Deutsches Haus, 33 Le Duan Boulevard, District 1, Ho Chi Minh City, Vietnam</p>
+        </div>
+        <div class="space-y-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-200">台北聯絡處</span>
+          <p class="leading-normal text-slate-500">台北市信義區信義路五段7號 (台北101大樓)</p>
+        </div>
+        <div class="space-y-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-200">免責聲明</span>
+          <p class="leading-normal text-slate-500 text-[10px]">本站所提供之投資試算模型與市場數據僅供財務模擬規劃參考，核貸條件與海外置產政策依越南建商與承貸銀行最終條款為準。</p>
+        </div>
+      </div>
+      <div class="max-w-7xl mx-auto border-t border-slate-800/60 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] text-slate-600">
+        <p>© 2026 VinaInvest Pro. Designed for cross-border capital reallocation.</p>
         <div class="flex gap-4">
           <span class="hover:text-slate-400 transition cursor-pointer">隱私權聲明</span>
+          <span>•</span>
+          <span class="hover:text-slate-400 transition cursor-pointer">跨國置產條款</span>
           <span>•</span>
           <span class="hover:text-slate-400 transition cursor-pointer">免責與授權</span>
         </div>
@@ -1008,7 +1238,109 @@
     createApp({
       setup() {
         // ==========================================
-        // 頁籤與基礎預設設定
+        // 越南投資入口網：靜態數據
+        // ==========================================
+        const filterCity = ref('all');
+
+        const marketStats = [
+          { label: 'GDP 平均年成長', value: '6.5% - 7.2%', desc: '穩居東南亞經濟增長龍頭，前景看好' },
+          { label: '平均租金投報率', value: '5.2% - 6.8%', desc: '相比台北/香港高出近三倍，被動收益可觀' },
+          { label: '人口紅利中位數', value: '32.5 歲', desc: '勞動人口結構極度年輕，支撐剛性購屋需求' },
+          { label: '年均都市化增長率', value: '3.0%', desc: '每年有百萬人口湧入新市區，帶動房產增值' }
+        ];
+
+        const investmentBenefits = [
+          {
+            title: '產權合規安全（Pink Book）',
+            desc: '外國人置產適用 50 年長期產權（可申請展期），建案均取得合法建築許可，交屋後由政府核發紅皮/粉皮書，保障合法持有。',
+            icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'
+          },
+          {
+            title: '極低的資產持有稅賦',
+            desc: '越南目前無徵收普遍財產稅，土地使用稅極低（僅約 0.03%-0.15% ）。低昂的養房成本非常適合中長期資產增長與穩健收租。',
+            icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+          },
+          {
+            title: '都市化基建紅利擴張',
+            desc: '胡志明市地鐵一號線、河內輕軌與隆城國際新機場等核心重大基建正如火如荼推進。軌道沿線建案具有無可比擬的超額增值空間。',
+            icon: 'M13 10V3L4 14h7v7l9-11h-7z'
+          }
+        ];
+
+        const properties = [
+          {
+            id: 1,
+            name: 'Masteri Centre Point (胡志明第九區核心)',
+            city: 'HCMC',
+            cityLabel: '胡志明市',
+            location: '胡志明市守德市 Grand Park 重劃區中心',
+            price: 2800000000, // 28億 ₫ (約 11.5 萬美元)
+            beds: 2,
+            area: 72,
+            expectedROI: 5.8
+          },
+          {
+            id: 2,
+            name: 'The Metropole Thủ Thiêm (守添新CBD奢華公寓)',
+            city: 'HCMC',
+            cityLabel: '胡志明市',
+            location: '胡志明市第 2 區守添新都市區 (媲美信義計畫區)',
+            price: 13500000000, // 135億 ₫ (約 55 萬美元)
+            beds: 3,
+            area: 110,
+            expectedROI: 5.1
+          },
+          {
+            id: 3,
+            name: 'Masteri West Heights (河內西部智慧新城)',
+            city: 'Hanoi',
+            cityLabel: '河內市',
+            location: '河內市南慈廉區新行政中心 Smart City 園區內',
+            price: 3600000000, // 36億 ₫ (約 14.8 萬美元)
+            beds: 2,
+            area: 68,
+            expectedROI: 6.2
+          },
+          {
+            id: 4,
+            name: 'Sun Grand City Thuy Khue (西湖第一排景觀邸)',
+            city: 'Hanoi',
+            cityLabel: '河內市',
+            location: '河內市西湖區瑞奎路第一排精華保留區',
+            price: 8800000000, // 88億 ₫ (約 36 萬美元)
+            beds: 3,
+            area: 95,
+            expectedROI: 5.5
+          }
+        ];
+
+        const filteredProperties = computed(() => {
+          if (filterCity.value === 'all') return properties;
+          return properties.filter(p => p.city === filterCity.value);
+        });
+
+        // 預約諮詢表單狀態
+        const consultForm = ref({
+          name: '',
+          phone: '',
+          email: '',
+          target: 'HCMC-District1'
+        });
+
+        const submitConsultation = () => {
+          showToast(`感謝您 ${consultForm.value.name}！我們的置產顧問會將有關「${consultForm.value.target}」的投資白皮書發送至 ${consultForm.value.email}。`);
+          consultForm.value = { name: '', phone: '', email: '', target: 'HCMC-District1' };
+        };
+
+        // 一鍵將建案資訊自動帶入下方的房貸計算機
+        const applyPropertyToCalculator = (property) => {
+          homeValue.value = property.price;
+          handleHomeValueChange();
+          showToast(`已將「${property.name}」總價帶入下方房貸進行分析！`);
+        };
+
+        // ==========================================
+        // 房貸計算機套件：頁籤與基礎預設設定
         // ==========================================
         const activeTab = ref('breakdown');
         
@@ -1022,55 +1354,55 @@
 
         const presets = [
           {
-            name: '30年首購自住 (20%自備)',
-            homeValue: 4500000,
+            name: ' Masteri 2房首購款 (20%自備)',
+            homeValue: 3600000000,
             downPaymentPercent: 20,
-            interestRate: 2.18,
+            interestRate: 8.5,
             loanTerm: 30,
-            propertyTaxRate: 0.15,
-            homeInsurance: 4000,
-            hoa: 2500,
+            propertyTaxRate: 0.05,
+            homeInsurance: 500000,
+            hoa: 800000,
             pmiRate: 0,
           },
           {
-            name: '15年極速還本 (30%自備)',
-            homeValue: 6000000,
-            downPaymentPercent: 30,
-            interestRate: 2.10,
+            name: '手頭自備充沛 15年快速結清',
+            homeValue: 5000000000,
+            downPaymentPercent: 40,
+            interestRate: 8.0,
             loanTerm: 15,
-            propertyTaxRate: 0.15,
-            homeInsurance: 5000,
-            hoa: 3500,
+            propertyTaxRate: 0.05,
+            homeInsurance: 700000,
+            hoa: 1000000,
             pmiRate: 0,
           },
           {
-            name: '青年安心成家 (10%自備)',
-            homeValue: 3500000,
+            name: '極高成效 9成外資首購方案',
+            homeValue: 2800000000,
             downPaymentPercent: 10,
-            interestRate: 1.775,
+            interestRate: 8.9,
             loanTerm: 30,
-            propertyTaxRate: 0.15,
-            homeInsurance: 3000,
-            hoa: 1500,
+            propertyTaxRate: 0.05,
+            homeInsurance: 400000,
+            hoa: 600000,
             pmiRate: 0.5,
           }
         ];
 
         // ==========================================
-        // 輸入變數 (預設以台幣量級作爲初始化數據)
+        // 房貸計算機輸入變數 (預設：大金額越南盾)
         // ==========================================
-        const homeValue = ref(5000000);
+        const homeValue = ref(3600000000); // 36億 ₫
         const downPaymentType = ref('percent'); // 'percent' | 'dollar'
-        const downPaymentPercent = ref(20);
-        const downPaymentDollar = ref(1000000);
-        const interestRate = ref(2.18);
-        const loanTerm = ref(30);
+        const downPaymentPercent = ref(30); // 越南法規針對外國人購屋首期自備推薦 30%
+        const downPaymentDollar = ref(108000000);
+        const interestRate = ref(8.5); // 越南在地年房貸利率平均 7.5% ~ 10.5%
+        const loanTerm = ref(25);
 
-        // 進階附加費
-        const propertyTaxRate = ref(0.15); // 年持有稅
-        const homeInsurance = ref(3600); // 房屋險(年)
-        const hoa = ref(2000); // 管理費(月)
-        const pmiRate = ref(0.4); // 信用保險年率
+        // 稅費
+        const propertyTaxRate = ref(0.05); // 越南非農業土地使用稅非常低
+        const homeInsurance = ref(600000); // 強制火災保費估算(年)
+        const hoa = ref(1000000); // 物業管理費估算(月)
+        const pmiRate = ref(0.4); // 信用保證保險年率
 
         // 提前還款
         const extraMonthly = ref(0);
@@ -1078,25 +1410,25 @@
         const extraOneTime = ref(0);
         const extraOneTimeMonth = ref(12);
 
-        // 購屋規劃
-        const annualIncome = ref(1200000);
-        const monthlyDebts = ref(8000);
-        const affordDownPayment = ref(1200000);
-        const affordTerm = ref(30);
-        const affordRate = ref(2.18);
+        // 購屋能力評估
+        const annualIncome = ref(960000000); // 預設家庭年收 9.6億 ₫
+        const monthlyDebts = ref(8000000); // 月其他負債 800萬 ₫
+        const affordDownPayment = ref(1000000000); // 手頭已備首期 10億 ₫
+        const affordTerm = ref(25);
+        const affordRate = ref(8.5);
 
-        // 暫存比較方案
+        // 儲存方案
         const savedScenarios = ref([
           {
             id: '1',
-            name: '常規方案 (30年 8成)',
-            homeValue: 5000000,
-            loanAmount: 4000000,
-            rate: 2.18,
-            term: 30,
-            monthlyPayment: 17135,
-            totalPaid: 5456400,
-            totalInterest: 1456400,
+            name: '常規胡志明公寓方案 (25年 7成)',
+            homeValue: 3600000000,
+            loanAmount: 2520000000,
+            rate: 8.5,
+            term: 25,
+            monthlyPayment: 21334612,
+            totalPaid: 6100383600,
+            totalInterest: 3580383600,
           }
         ]);
         const scenarioNameInput = ref('');
@@ -1169,7 +1501,7 @@
         };
 
         // ==========================================
-        // 核心房貸引擎演算
+        // 核心房貸引擎演算 (越南盾精算)
         // ==========================================
         const calculations = computed(() => {
           const actualDown = downPaymentType.value === 'percent' 
@@ -1179,7 +1511,7 @@
           const r = interestRate.value / 100 / 12;
           const n = loanTerm.value * 12;
 
-          // 本息攤銷單月本息公式 (每月應繳)
+          // 本息攤銷公式
           let monthlyPI = 0;
           if (loanAmount > 0) {
             if (r === 0) {
@@ -1189,17 +1521,16 @@
             }
           }
 
-          // 月持有稅與月保險費代收累計
+          // 月雜費代收
           const monthlyPropertyTax = (homeValue.value * (propertyTaxRate.value / 100)) / 12;
           const monthlyInsurance = homeInsurance.value / 12;
           
-          // 如果貸比值 LTV 高於 80%，需計繳房貸信用保險費
           const ltvRatio = homeValue.value > 0 ? (loanAmount / homeValue.value) : 0;
           const initialPMI = ltvRatio > 0.8 ? (loanAmount * (pmiRate.value / 100)) / 12 : 0;
 
           const totalMonthlyPayment = monthlyPI + monthlyPropertyTax + monthlyInsurance + hoa.value + initialPMI;
 
-          // 生成常規本息還款攤銷表
+          // 生成常規還款攤銷表
           const amortizationSchedule = [];
           let balance = loanAmount;
           let cumInterest = 0;
@@ -1314,7 +1645,7 @@
         });
 
         // ==========================================
-        // 購屋規劃反向推演算法
+        // 購屋規劃能力評估 (越南盾)
         // ==========================================
         const affordability = computed(() => {
           const monthlyGrossIncome = annualIncome.value / 12;
@@ -1325,13 +1656,13 @@
             const maxAllowedMonthlyHousing = Math.max(0, Math.min(maxHousingByIncome, maxHousingByDebt));
 
             // 除本息外，固定稅費預估扣除
-            const estimatedFixedMonthlyCosts = (1500 / 12) + 100;
+            const estimatedFixedMonthlyCosts = (1500000 / 12) + 50000;
             const remainingForPIAndTax = Math.max(0, maxAllowedMonthlyHousing - estimatedFixedMonthlyCosts);
             
             const r = affordRate.value / 100 / 12;
             const n = affordTerm.value * 12;
-            const taxFactor = (0.15 / 100) / 12;
-            const pmiFactor = affordDownPayment.value < 500000 ? (0.4 / 100) / 12 : 0;
+            const taxFactor = (0.05 / 100) / 12;
+            const pmiFactor = affordDownPayment.value < 500000000 ? (0.4 / 100) / 12 : 0;
 
             const amortFactor = r === 0 ? (1 / n) : (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
             const denominator = amortFactor + taxFactor + pmiFactor;
@@ -1404,11 +1735,11 @@
         const segmentDetails = computed(() => {
           const total = calculations.value.totalMonthlyPayment || 1;
           const items = [
-            { name: 'P&I', value: calculations.value.monthlyPI, color: '#10b981' }, // 翡翠綠
-            { name: 'Taxes', value: calculations.value.monthlyPropertyTax, color: '#3b82f6' }, // 藍
-            { name: 'Insurance', value: calculations.value.monthlyInsurance, color: '#f59e0b' }, // 琥珀
-            { name: 'HOA', value: hoa.value, color: '#8b5cf6' }, // 紫
-            { name: 'PMI', value: calculations.value.initialPMI, color: '#ec4899' }, // 櫻花粉
+            { name: 'P&I', value: calculations.value.monthlyPI, color: '#10b981' }, 
+            { name: 'Taxes', value: calculations.value.monthlyPropertyTax, color: '#3b82f6' }, 
+            { name: 'Insurance', value: calculations.value.monthlyInsurance, color: '#f59e0b' }, 
+            { name: 'HOA', value: hoa.value, color: '#8b5cf6' }, 
+            { name: 'PMI', value: calculations.value.initialPMI, color: '#ec4899' }, 
           ];
           
           let cumPct = 0;
@@ -1537,14 +1868,14 @@
         });
 
         // ==========================================
-        // 格式化輔助
+        // 格式化輔助 (越南盾 VND在地化符號)
         // ==========================================
         const formatCurrency = (val) => {
-          return new Intl.NumberFormat('zh-TW', {
+          return new Intl.NumberFormat('vi-VN', {
             style: 'currency',
-            currency: 'TWD',
+            currency: 'VND',
             maximumFractionDigits: 0,
-          }).format(val).replace('TWD', 'NT$');
+          }).format(val);
         };
 
         // ==========================================
@@ -1581,7 +1912,7 @@
         };
 
         // ==========================================
-        // 複製到剪貼簿功能 (供 Excel)
+        // 複製到剪貼簿功能 (供 Excel 格式貼上)
         // ==========================================
         const copyScheduleToClipboard = () => {
           let tsv = '期數\t年度\t月繳總額\t攤還本金\t當期利息\t持有稅預算\t保險代攤\t管理費\t房貸信用險\t剩餘本金餘額\n';
@@ -1600,6 +1931,13 @@
         };
 
         return {
+          filterCity,
+          marketStats,
+          investmentBenefits,
+          filteredProperties,
+          consultForm,
+          submitConsultation,
+          applyPropertyToCalculator,
           activeTab,
           tabs,
           presets,
